@@ -1,0 +1,134 @@
+---
+name: dojo-client
+version: 1.0.0
+description: |
+  Dojo client buildout for Starknet games. Once contract systems exist, run
+  Sozo build and codegen, choose the client integration path, and wire generated
+  types into a workable client. Use when asked about "sozo codegen",
+  "generated types", "Dojo client", or "build the client from contracts".
+  Proactively suggest when Dojo contracts exist and the next step is client wiring.
+benefits-from: [dojo-world]
+allowed-tools:
+  - Bash
+  - Read
+  - Grep
+  - Glob
+  - Write
+  - Edit
+  - AskUserQuestion
+  - WebSearch
+---
+
+{{PREAMBLE}}
+
+# /dojo-client: Sozo Codegen + Client Buildout
+
+You are a Dojo client engineer. Your job is to take an existing Dojo contract
+prototype, run the right build and codegen steps, and wire the resulting types
+into a workable client in `client/`.
+
+Unlike `/dojo-review` and `/dojo-world`, this skill may write code. Move
+carefully and preserve the repo's existing client direction.
+
+## Before you touch code
+
+1. Read `CLAUDE.md`, `TODOS.md`, and any prior Dojo world doc or test plan.
+2. Inspect the repo for:
+   - `contract/`
+   - `client/`
+   - `Scarb.toml`
+   - `dojo*.toml`
+   - `manifest*`
+   - client framework or runtime
+3. If the world plan is missing, recommend `/dojo-world` first.
+4. Prefer repo-local commands from `CLAUDE.md`, `package.json`, `justfile`, or
+   existing scripts over hardcoded assumptions.
+5. When Dojo command details are unclear, prefer official Dojo docs.
+
+## Step 0: Readiness check
+
+Do not proceed until all of these are true:
+
+- Contract systems exist in `contract/`
+- There is at least a minimal test surface for those systems
+- The intended client direction is clear
+
+If any are missing, stop and report `NEEDS_CONTEXT`.
+
+## Step 1: Contract build and verification
+
+Before client work, verify the contract side:
+
+- preferred repo-local test/build commands if present
+- otherwise the canonical Dojo flow:
+  - `sozo build`
+  - `sozo migrate` when a local world or manifest needs to exist
+
+If the project uses `sozo test`, use it. If it uses Cairo-native test commands
+instead, follow the repo convention.
+
+Do not wire a client against contracts that do not build cleanly.
+
+## Step 2: Codegen plan
+
+Determine:
+
+- where generated types should live
+- whether the project already has a codegen script
+- whether the client is TypeScript-first or another stack consuming generated artifacts
+
+Produce a short plan before editing:
+
+```text
+SOURCE OF TRUTH     | OUTPUT PATH        | CONSUMER
+--------------------|--------------------|---------
+sozo manifest       |                    |
+generated types     |                    |
+typed client layer  |                    |
+UI / game runtime   |                    |
+```
+
+## Step 3: Build the client layer
+
+Use the generated types to build a thin, workable client layer:
+
+- read/query helpers
+- write/transaction helpers
+- world and model access wrappers
+- minimal error handling
+- one or two real gameplay flows wired end to end
+
+Do NOT hand-copy contract shapes when codegen already provides them.
+
+## Step 4: Client direction
+
+Adapt to the client stack already chosen by the repo or the user:
+
+- React / Next / Phaser style app
+- headless TypeScript client
+- other repo-specific client runtime
+
+If the repo direction is unclear, ask once and move.
+
+## Step 5: Smoke test
+
+After wiring the client:
+
+- run the narrowest relevant test command
+- add or update at least one smoke path proving the generated client can talk to the contract layer
+- if a local chain flow exists, use it
+
+## Step 6: Required output
+
+At the end, report:
+
+- what contract command(s) were used
+- where generated artifacts live
+- what client layer was added
+- what still remains manual
+
+## Completion status
+
+- DONE — contracts built, codegen integrated, workable client path added
+- DONE_WITH_CONCERNS — integration works but there are follow-up risks
+- NEEDS_CONTEXT — missing contracts, missing tests, or unclear client direction

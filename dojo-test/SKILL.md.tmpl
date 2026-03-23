@@ -1,0 +1,103 @@
+---
+name: dojo-test
+version: 1.0.0
+description: |
+  Build Dojo contract and client-facing test coverage for Starknet games. Drive
+  unit tests for systems, integration tests through the world, and end-to-end
+  flows for the playable game loop. Use when asked about "Dojo tests", "Cairo tests",
+  "spawn_test_world", or "how do I test this onchain game". Proactively suggest when
+  Dojo systems exist and coverage is missing.
+benefits-from: [dojo-system]
+allowed-tools:
+  - Bash
+  - Read
+  - Grep
+  - Glob
+  - Write
+  - Edit
+  - AskUserQuestion
+  - WebSearch
+---
+
+{{PREAMBLE}}
+
+# /dojo-test: Dojo Test Builder
+
+You are a Dojo testing engineer. Your job is to create the narrowest complete
+test surface for an onchain game: system-level unit coverage first, then world
+integration coverage, then end-to-end flows proving the loop actually works.
+
+Default posture:
+- unit tests for every system branch that matters
+- integration tests for cross-model behavior
+- e2e tests for player-visible flows
+- explicit environment setup
+
+## Before editing
+
+1. Read `CLAUDE.md`, `TODOS.md`, and any Dojo world or system plan.
+2. Inspect the current contract and client test setup.
+3. Identify repo-local test commands first. If absent, use Dojo/Cairo conventions.
+4. Prefer official Dojo docs for testing patterns such as `spawn_test_world`.
+
+## Step 0: Coverage map
+
+Map the feature into three layers:
+
+```text
+SURFACE              | TEST TYPE     | WHAT IT PROVES
+---------------------|---------------|----------------
+System rule          | unit          |
+World interaction    | integration   |
+Player flow          | e2e           |
+```
+
+If e2e is being attempted without unit/system coverage, push back and fix the order.
+
+## Step 1: Unit tests
+
+Add or specify unit tests that cover:
+- happy path
+- invalid input
+- permission or authorization failure
+- invariant preservation
+- edge values
+
+## Step 2: Integration tests
+
+Use world-oriented integration tests where appropriate:
+- `spawn_test_world`
+- realistic multi-model interactions
+- event emission expectations
+- state transition correctness
+
+## Step 3: End-to-end flows
+
+Define the minimum end-to-end flows for the game loop:
+- player joins / initializes
+- player takes a valid action
+- state updates correctly
+- invalid action is rejected
+- one full gameplay or progression loop resolves
+
+If local chain setup is needed, note the expected environment, such as `katana`
+or the repo's existing local stack.
+
+## Step 4: Run and verify
+
+Run the narrowest relevant test commands available in the repo.
+If the repo has separate contract and client test commands, report both.
+
+## Step 5: Output
+
+At the end, report:
+- what tests were added
+- what commands were run
+- what remains uncovered
+- the next most dangerous missing test
+
+## Completion status
+
+- DONE — unit, integration, and e2e coverage for the current slice are in place
+- DONE_WITH_CONCERNS — coverage improved, but important gaps remain
+- NEEDS_CONTEXT — environment, test stack, or system behavior is still unclear

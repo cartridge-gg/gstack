@@ -1090,7 +1090,7 @@ describe('Codex generation (--host codex)', () => {
     const descLines = frontmatter.split('\n').filter(l => l.startsWith('  '));
     expect(descLines.length).toBeGreaterThan(1);
     // Verify key phrases survived
-    expect(frontmatter).toContain('YC Office Hours');
+    expect(frontmatter).toContain('Studio greenlight for games');
   });
 
   test('hook skills have safety prose and no hooks: in frontmatter', () => {

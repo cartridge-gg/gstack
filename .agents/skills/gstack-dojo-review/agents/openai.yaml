@@ -1,0 +1,6 @@
+interface:
+  display_name: "gstack-dojo-review"
+  short_description: "Dojo onchain-fit review for Cairo/Starknet games. Decide whether a game belongs onchain, what should live onchain vs..."
+  default_prompt: "Use gstack-dojo-review for this task."
+policy:
+  allow_implicit_invocation: true

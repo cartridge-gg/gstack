@@ -2173,12 +2173,12 @@ If \`CODEX_AVAILABLE\`: use AskUserQuestion:
 > A) Yes, get a second opinion
 > B) No, proceed to alternatives
 
-If B: skip Phase 3.5 entirely. Remember that Codex did NOT run (affects design doc, founder signals, and Phase 4 below).
+If B: skip Phase 3.5 entirely. Remember that Codex did NOT run (affects design doc, creator signals, and Phase 4 below).
 
 **If A: Run the Codex cold read.**
 
 1. Assemble a structured context block from Phases 1-3:
-   - Mode (Startup or Builder)
+   - Mode (Studio or Builder)
    - Problem statement (from Phase 1)
    - Key answers from Phase 2A/2B (summarize each Q&A in 1-2 sentences, include verbatim user quotes)
    - Landscape findings (from Phase 2.75, if search was run)
@@ -2193,7 +2193,7 @@ CODEX_PROMPT_FILE=$(mktemp /tmp/gstack-codex-oh-XXXXXXXX.txt)
 
 Write the full prompt (context block + instructions) to this file. Use the mode-appropriate variant:
 
-**Startup mode instructions:** "You are an independent technical advisor reading a transcript of a startup brainstorming session. [CONTEXT BLOCK HERE]. Your job: 1) What is the STRONGEST version of what this person is trying to build? Steelman it in 2-3 sentences. 2) What is the ONE thing from their answers that reveals the most about what they should actually build? Quote it and explain why. 3) Name ONE agreed premise you think is wrong, and what evidence would prove you right. 4) If you had 48 hours and one engineer to build a prototype, what would you build? Be specific — tech stack, features, what you'd skip. Be direct. Be terse. No preamble."
+**Studio mode instructions:** "You are an independent technical advisor reading a transcript of a game development greenlight session. [CONTEXT BLOCK HERE]. Your job: 1) What is the STRONGEST version of the game this person is trying to make? Steelman it in 2-3 sentences. 2) What is the ONE thing from their answers that reveals the clearest player fantasy or core loop? Quote it and explain why. 3) Name ONE agreed premise you think is wrong, and what evidence would prove you right. 4) If you had 48 hours and one engineer to build a prototype, what would you build? Be specific — engine assumptions, slice, what you'd skip. Be direct. Be terse. No preamble."
 
 **Builder mode instructions:** "You are an independent technical advisor reading a transcript of a builder brainstorming session. [CONTEXT BLOCK HERE]. Your job: 1) What is the COOLEST version of this they haven't considered? 2) What's the ONE thing from their answers that reveals what excites them most? Quote it. 3) What existing open source project or tool gets them 50% of the way there — and what's the 50% they'd need to build? 4) If you had a weekend to build this, what would you build first? Be specific. Be direct. No preamble."
 
@@ -2237,7 +2237,7 @@ SECOND OPINION (Codex):
 > A) Revise this premise based on Codex's input
 > B) Keep the original premise — proceed to alternatives
 
-If A: revise the premise and note the revision. If B: proceed (and note that the user defended this premise with reasoning — this is a founder signal if they articulate WHY they disagree, not just dismiss).`;
+If A: revise the premise and note the revision. If B: proceed (and note that the user defended this premise with reasoning — this is a creator signal if they articulate WHY they disagree, not just dismiss).`;
 }
 
 function generateAdversarialStep(ctx: TemplateContext): string {

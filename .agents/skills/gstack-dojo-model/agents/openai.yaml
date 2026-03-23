@@ -1,0 +1,6 @@
+interface:
+  display_name: "gstack-dojo-model"
+  short_description: "Design and implement Dojo models in Cairo for Starknet games. Define keys, fields, storage shape, and invariants..."
+  default_prompt: "Use gstack-dojo-model for this task."
+policy:
+  allow_implicit_invocation: true
