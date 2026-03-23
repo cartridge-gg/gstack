@@ -1,0 +1,6 @@
+interface:
+  display_name: "gstack-dojo-test"
+  short_description: "Build Dojo contract and client-facing test coverage for Starknet games. Drive unit tests for systems, integration..."
+  default_prompt: "Use gstack-dojo-test for this task."
+policy:
+  allow_implicit_invocation: true

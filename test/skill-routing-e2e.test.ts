@@ -154,7 +154,7 @@ describeE2E('Skill Routing E2E — Developer Journey', () => {
       const testName = 'journey-ideation';
       const expectedSkill = 'office-hours';
       const result = await runSkillTest({
-        prompt: "I've been thinking about building a waitlist management tool for restaurants. The existing solutions are expensive and overcomplicated. I want something simple — a tablet app where hosts can add parties, see wait times, and text customers when their table is ready. Help me think through whether this is worth building and what the key design decisions are.",
+        prompt: "I've been thinking about building a co-op dungeon crawler where two players improvise spells by combining runes in real time. I want help thinking through whether the idea is actually strong, what the core loop should be, and what the first playable slice needs to prove.",
         workingDirectory: tmpDir,
         maxTurns: 5,
         allowedTools: ['Skill', 'Read', 'Bash', 'Glob', 'Grep'],
@@ -181,22 +181,25 @@ describeE2E('Skill Routing E2E — Developer Journey', () => {
     try {
       fs.writeFileSync(path.join(tmpDir, 'plan.md'), `# Waitlist App Architecture
 
-## Components
-- REST API (Express.js)
-- PostgreSQL database
-- React frontend
-- SMS integration (Twilio)
+## Engine
+- Godot 4.5
 
-## Data Model
-- restaurants (id, name, settings)
-- parties (id, restaurant_id, name, size, phone, status, created_at)
-- wait_estimates (id, restaurant_id, avg_wait_minutes)
+## Systems
+- Rune combination input system
+- Enemy spawn director
+- Save/load for unlocked runes
+- Lobby flow for local and online co-op
 
-## API Endpoints
-- POST /api/parties - add party to waitlist
-- GET /api/parties - list current waitlist
-- PATCH /api/parties/:id/status - update party status
-- GET /api/estimate - get current wait estimate
+## Data
+- rune_defs
+- spell_combos
+- enemy_waves
+- player_progress
+
+## Risks
+- Input readability under pressure
+- State sync for co-op spell casting
+- Save compatibility when rune defs change
 `);
       spawnSync('git', ['add', '.'], { cwd: tmpDir, stdio: 'pipe', timeout: 5000 });
       spawnSync('git', ['commit', '-m', 'initial'], { cwd: tmpDir, stdio: 'pipe', timeout: 5000 });
@@ -204,7 +207,7 @@ describeE2E('Skill Routing E2E — Developer Journey', () => {
       const testName = 'journey-plan-eng';
       const expectedSkill = 'plan-eng-review';
       const result = await runSkillTest({
-        prompt: "I wrote up a plan for the waitlist app in plan.md. Can you take a look at the architecture and make sure I'm not missing any edge cases or failure modes before I start coding?",
+        prompt: "I wrote up a plan for the rune-combo game in plan.md. Can you take a look at the architecture and make sure I'm not missing edge cases, save issues, or production failure modes before I start coding?",
         workingDirectory: tmpDir,
         maxTurns: 5,
         allowedTools: ['Skill', 'Read', 'Bash', 'Glob', 'Grep'],
@@ -231,22 +234,25 @@ describeE2E('Skill Routing E2E — Developer Journey', () => {
     try {
       fs.writeFileSync(path.join(tmpDir, 'plan.md'), `# Waitlist App Architecture
 
-## Components
-- REST API (Express.js)
-- PostgreSQL database
-- React frontend
-- SMS integration (Twilio)
+## Engine
+- Godot 4.5
 
-## Data Model
-- restaurants (id, name, settings)
-- parties (id, restaurant_id, name, size, phone, status, created_at)
-- wait_estimates (id, restaurant_id, avg_wait_minutes)
+## Systems
+- Rune combination input system
+- Enemy spawn director
+- Save/load for unlocked runes
+- Lobby flow for local and online co-op
 
-## API Endpoints
-- POST /api/parties - add party to waitlist
-- GET /api/parties - list current waitlist
-- PATCH /api/parties/:id/status - update party status
-- GET /api/estimate - get current wait estimate
+## Data
+- rune_defs
+- spell_combos
+- enemy_waves
+- player_progress
+
+## Risks
+- Input readability under pressure
+- State sync for co-op spell casting
+- Save compatibility when rune defs change
 `);
       spawnSync('git', ['add', '.'], { cwd: tmpDir, stdio: 'pipe', timeout: 5000 });
       spawnSync('git', ['commit', '-m', 'initial'], { cwd: tmpDir, stdio: 'pipe', timeout: 5000 });
@@ -254,7 +260,7 @@ describeE2E('Skill Routing E2E — Developer Journey', () => {
       const testName = 'journey-think-bigger';
       const expectedSkill = 'plan-ceo-review';
       const result = await runSkillTest({
-        prompt: "Actually, looking at this plan again, I feel like we're thinking too small. We're just doing waitlists but what about the whole restaurant guest experience? Is there a bigger opportunity here we should go after?",
+        prompt: "Actually, looking at this plan again, I feel like we're thinking too small. We're just building a rune-combo prototype, but could this become a much bigger co-op action game with seasonal runs and a stronger player fantasy? Is there a bigger opportunity here we should go after?",
         workingDirectory: tmpDir,
         maxTurns: 5,
         allowedTools: ['Skill', 'Read', 'Bash', 'Glob', 'Grep'],

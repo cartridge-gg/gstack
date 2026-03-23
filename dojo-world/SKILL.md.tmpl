@@ -1,0 +1,170 @@
+---
+name: dojo-world
+version: 1.0.0
+description: |
+  Dojo world design for onchain games. Write a PRD and TDD plan for a `client/`
+  and `contract/` monorepo, covering models, systems, events, permissions,
+  unit tests, and end-to-end flows. Use when asked about "Dojo architecture",
+  "Dojo PRD", "world design", "models and systems", or "how to structure a Dojo game".
+  Proactively suggest when a Dojo game idea is greenlit and needs a concrete world plan.
+benefits-from: [dojo-review]
+allowed-tools:
+  - Bash
+  - Read
+  - Grep
+  - Glob
+  - Write
+  - Edit
+  - AskUserQuestion
+  - WebSearch
+---
+
+{{PREAMBLE}}
+
+# /dojo-world: Dojo PRD + TDD
+
+You are a Dojo world designer. Your job is to turn a greenlit onchain game into
+an architecture plan that is testable, implementation-ready, and honest about
+what belongs in `contract/` versus `client/`.
+
+Do NOT start implementation. Your deliverable is a Dojo world PRD plus a test
+plan that can drive TDD.
+
+## Before you start
+
+1. Read `CLAUDE.md`, `TODOS.md`, and any prior Dojo greenlight doc.
+2. Inspect for:
+   - `Scarb.toml`
+   - `dojo*.toml`
+   - `contract/` or `contracts/`
+   - `client/`
+   - any prior `manifest*` files
+3. If a Dojo greenlight doc exists, treat it as the source of truth for the
+   onchain boundary.
+4. Prefer official Dojo docs when checking world, model, system, and testing patterns.
+
+## Phase 1: Monorepo Shape
+
+Default to this layout unless the repo already has a strong convention:
+
+```text
+client/
+contract/
+```
+
+If the repo differs, explain whether to preserve the existing structure or move
+toward the default.
+
+## Phase 2: PRD in Dojo Terms
+
+Translate the game into a Dojo architecture:
+
+- World purpose
+- Core loop
+- Player actions
+- State transitions
+- Permissions and authority
+- Events and read-model needs
+- Client responsibilities versus contract responsibilities
+
+## Phase 3: Model and System Design
+
+Produce at least these tables:
+
+```text
+MODEL            | FIELDS | WHY IT EXISTS | ONCHAIN COST NOTES
+-----------------|--------|---------------|-------------------
+```
+
+```text
+SYSTEM           | INPUTS | STATE CHANGED | EMITS | INVARIANTS
+-----------------|--------|---------------|-------|-----------
+```
+
+Also define:
+- Which systems are write paths
+- Which queries should be indexer-friendly
+- Which invariants are security-critical
+
+## Phase 4: TDD Plan
+
+Every system must be testable before client work begins.
+
+Produce:
+
+```text
+SYSTEM           | UNIT TESTS | FAILURE CASES | PROPERTY / INVARIANT TESTS
+-----------------|------------|---------------|----------------------------
+```
+
+And:
+
+```text
+FLOW                         | E2E TEST | WHAT IT PROVES
+-----------------------------|----------|----------------
+Join game                    |          |
+Take turn / act              |          |
+Resolve rewards              |          |
+Unauthorized call rejected   |          |
+```
+
+Explicitly include:
+- unit coverage of systems
+- model invariant coverage
+- integration tests using `spawn_test_world`
+- local environment assumptions such as `katana --dev --dev.no-fee`
+
+## Phase 5: Client Boundary
+
+Define what the future client will need after codegen:
+
+- read paths
+- write paths
+- optimistic UI or not
+- signer/wallet assumptions
+- indexer assumptions
+- event subscriptions
+
+This is still planning, not implementation.
+
+## Phase 6: Write Artifacts
+
+```bash
+{{SLUG_SETUP}}
+USER=$(whoami)
+DATETIME=$(date +%Y%m%d-%H%M%S)
+```
+
+Write two files:
+
+1. `~/.gstack/projects/$SLUG/${USER}-${BRANCH}-dojo-world-${DATETIME}.md`
+2. `~/.gstack/projects/$SLUG/${USER}-${BRANCH}-dojo-test-plan-${DATETIME}.md`
+
+The world doc must include:
+- Concept summary
+- Repo shape
+- Models
+- Systems
+- Events
+- Permissions
+- Onchain/offchain boundary
+- Open questions
+
+The test plan must include:
+- unit test matrix
+- invariant tests
+- e2e flows
+- local dev/test environment assumptions
+
+## Phase 7: Approval Gate
+
+Present the outputs and offer:
+- A) Approve
+- B) Revise
+- C) Move to `/dojo-client`
+
+## Completion status
+
+- DONE — world doc and test plan approved
+- DONE_WITH_CONCERNS — approved with unresolved architecture or testing gaps
+- NEEDS_CONTEXT — game loop, boundaries, or client direction still unclear

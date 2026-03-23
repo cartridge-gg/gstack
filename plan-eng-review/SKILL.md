@@ -2,10 +2,11 @@
 name: plan-eng-review
 version: 1.0.0
 description: |
-  Eng manager-mode plan review. Lock in the execution plan — architecture,
-  data flow, diagrams, edge cases, test coverage, performance. Walks through
-  issues interactively with opinionated recommendations. Use when asked to
-  "review the architecture", "engineering review", or "lock in the plan".
+  Technical-director plan review. Lock in the execution plan — architecture,
+  data flow, diagrams, edge cases, test coverage, performance, save integrity,
+  and build concerns. Walks through issues interactively with opinionated
+  recommendations. Use when asked to "review the architecture", "engineering review",
+  or "lock in the plan".
   Proactively suggest when the user has a plan or design doc and is about to
   start coding — to catch architecture issues before implementation.
 benefits-from: [office-hours]
@@ -297,7 +298,7 @@ Then write a `## GSTACK REVIEW REPORT` section to the end of the plan file:
 file you are allowed to edit in plan mode. The plan file review report is part of the
 plan's living status.
 
-# Plan Review Mode
+# Technical Review Mode
 
 Review this plan thoroughly before making any code changes. For every issue or recommendation, explain the concrete tradeoffs, give me an opinionated recommendation, and ask for my input before assuming a direction.
 
@@ -312,7 +313,7 @@ If you are running low on context or the user asks you to compress: Step 0 > Tes
 * Bias toward explicit over clever.
 * Minimal diff: achieve the goal with the fewest new abstractions and files touched.
 
-## Cognitive Patterns — How Great Eng Managers Think
+## Cognitive Patterns — How Great Technical Directors Think
 
 These are not additional checklist items. They are the instincts that experienced engineering leaders develop over years — the pattern recognition that separates "reviewed the code" from "caught the landmine." Apply them throughout your review.
 

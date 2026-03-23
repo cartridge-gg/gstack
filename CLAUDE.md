@@ -69,6 +69,12 @@ gstack/
 ├── design-review/    # /design-review skill (design audit + fix loop)
 ├── ship/            # Ship workflow skill
 ├── review/          # PR review skill
+├── dojo-review/     # /dojo-review skill (Dojo onchain-fit + boundary review)
+├── dojo-world/      # /dojo-world skill (Dojo PRD/TDD for models, systems, tests)
+├── dojo-client/     # /dojo-client skill (Sozo codegen + client integration)
+├── dojo-model/      # /dojo-model skill (Dojo model design + implementation)
+├── dojo-system/     # /dojo-system skill (Dojo system design + implementation)
+├── dojo-test/       # /dojo-test skill (Dojo unit/integration/e2e coverage)
 ├── plan-ceo-review/ # /plan-ceo-review skill
 ├── plan-eng-review/ # /plan-eng-review skill
 ├── autoplan/        # /autoplan skill (auto-review pipeline: CEO → design → eng)
@@ -76,7 +82,7 @@ gstack/
 ├── canary/          # /canary skill (post-deploy monitoring loop)
 ├── codex/           # /codex skill (multi-AI second opinion via OpenAI Codex CLI)
 ├── land-and-deploy/ # /land-and-deploy skill (merge → deploy → canary verify)
-├── office-hours/    # /office-hours skill (YC Office Hours — startup diagnostic + builder brainstorm)
+├── office-hours/    # /office-hours skill (game studio greenlight + builder brainstorm)
 ├── investigate/     # /investigate skill (systematic root-cause debugging)
 ├── retro/           # Retrospective skill (includes /retro global cross-project mode)
 ├── bin/             # Standalone scripts (gstack-global-discover for cross-tool session discovery)

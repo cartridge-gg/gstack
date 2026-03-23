@@ -598,7 +598,7 @@ describe('office-hours skill structure', () => {
   }
 
   // Dual-mode structure
-  for (const section of ['Startup mode', 'Builder mode']) {
+  for (const section of ['Studio mode', 'Builder mode']) {
     test(`contains ${section}`, () => expect(content).toContain(section));
   }
 
@@ -607,9 +607,9 @@ describe('office-hours skill structure', () => {
     expect(content).toContain("what's your goal");
   });
 
-  // Six forcing questions (startup mode)
-  for (const question of ['Demand Reality', 'Status Quo', 'Desperate Specificity',
-                           'Narrowest Wedge', 'Observation & Surprise', 'Future-Fit']) {
+  // Six forcing questions (studio mode)
+  for (const question of ['Player Fantasy', 'Reference Point', 'Core Loop',
+                           'First 60 Seconds', 'Proof of Fun', 'Vertical Slice']) {
     test(`contains forcing question: ${question}`, () => expect(content).toContain(question));
   }
 
@@ -619,14 +619,9 @@ describe('office-hours skill structure', () => {
     expect(content).toContain('delightful');
   });
 
-  // Intrapreneurship adaptation
-  test('contains intrapreneurship adaptation', () => {
-    expect(content).toContain('Intrapreneurship');
-  });
-
-  // YC founder discovery engine
-  test('contains YC apply CTA with ref tracking', () => {
-    expect(content).toContain('ycombinator.com/apply?ref=gstack');
+  // Team-size adaptation
+  test('contains solo or small-team adaptation', () => {
+    expect(content).toMatch(/solo|small team|duo/i);
   });
 
   test('contains "What I noticed" design doc section', () => {
@@ -637,12 +632,13 @@ describe('office-hours skill structure', () => {
     expect(content).toContain('golden age');
   });
 
-  test('contains Garry Tan personal plea', () => {
-    expect(content).toContain('Garry Tan, the creator of GStack');
+  test('contains personal note from the creator', () => {
+    expect(content).toMatch(/personal note/i);
+    expect(content).toMatch(/creator of gstack|creator of GStack/i);
   });
 
-  test('contains founder signal synthesis phase', () => {
-    expect(content).toContain('Founder Signal Synthesis');
+  test('contains creator signal synthesis phase', () => {
+    expect(content).toContain('Creator Signal Synthesis');
   });
 
   test('contains three-tier decision rubric', () => {
@@ -661,8 +657,8 @@ describe('office-hours skill structure', () => {
   });
 
   // Operating principles per mode
-  test('contains startup operating principles', () => {
-    expect(content).toContain('Specificity is the only currency');
+  test('contains studio operating principles', () => {
+    expect(content).toContain('Player fantasy clarity');
   });
 
   test('contains builder operating principles', () => {
@@ -720,6 +716,56 @@ describe('office-hours skill structure', () => {
 
   test('contains rough aesthetic instruction', () => {
     expect(content).toMatch(/rough|hand-drawn/i);
+  });
+});
+
+describe('Dojo skills', () => {
+  test('dojo-review skill exists with onchain-fit guidance', () => {
+    const content = fs.readFileSync(path.join(ROOT, 'dojo-review', 'SKILL.md'), 'utf-8');
+    expect(content).toContain('latency');
+    expect(content).toContain('ownership');
+    expect(content).toMatch(/onchain vs offchain|belongs onchain/i);
+  });
+
+  test('dojo-world skill exists with Dojo architecture and testing guidance', () => {
+    const content = fs.readFileSync(path.join(ROOT, 'dojo-world', 'SKILL.md'), 'utf-8');
+    expect(content).toContain('client/');
+    expect(content).toContain('contract/');
+    expect(content).toContain('models');
+    expect(content).toContain('systems');
+    expect(content).toContain('spawn_test_world');
+  });
+
+  test('dojo-client skill exists with sozo codegen guidance', () => {
+    const content = fs.readFileSync(path.join(ROOT, 'dojo-client', 'SKILL.md'), 'utf-8');
+    expect(content).toContain('sozo build');
+    expect(content).toContain('sozo migrate');
+    expect(content).toMatch(/codegen|generated types/i);
+    expect(content).toContain('client/');
+  });
+
+  test('dojo-model skill exists with model design constraints', () => {
+    const content = fs.readFileSync(path.join(ROOT, 'dojo-model', 'SKILL.md'), 'utf-8');
+    expect(content).toContain('#[dojo::model]');
+    expect(content).toContain('#[key]');
+    expect(content).toMatch(/small, isolated models|modularity|composability/i);
+    expect(content).toMatch(/Drop, Serde|Introspect/i);
+  });
+
+  test('dojo-system skill exists with stateless system guidance', () => {
+    const content = fs.readFileSync(path.join(ROOT, 'dojo-system', 'SKILL.md'), 'utf-8');
+    expect(content).toMatch(/stateless/i);
+    expect(content).toContain('world.write_model');
+    expect(content).toMatch(/permission|event/i);
+    expect(content).toMatch(/single responsibility|focused responsibility/i);
+  });
+
+  test('dojo-test skill exists with unit and integration testing guidance', () => {
+    const content = fs.readFileSync(path.join(ROOT, 'dojo-test', 'SKILL.md'), 'utf-8');
+    expect(content).toContain('spawn_test_world');
+    expect(content).toMatch(/unit tests|integration tests|e2e/i);
+    expect(content).toMatch(/katana|local chain/i);
+    expect(content).toMatch(/system coverage|invariant/i);
   });
 });
 
@@ -1398,6 +1444,7 @@ describe('Skill trigger phrases', () => {
     'qa', 'qa-only', 'ship', 'review', 'investigate', 'office-hours',
     'plan-ceo-review', 'plan-eng-review', 'plan-design-review',
     'design-review', 'design-consultation', 'retro', 'document-release',
+    'dojo-review', 'dojo-world', 'dojo-client', 'dojo-model', 'dojo-system', 'dojo-test',
     'codex', 'browse', 'setup-browser-cookies',
   ];
 
@@ -1418,6 +1465,7 @@ describe('Skill trigger phrases', () => {
     'qa', 'qa-only', 'ship', 'review', 'investigate', 'office-hours',
     'plan-ceo-review', 'plan-eng-review', 'plan-design-review',
     'design-review', 'design-consultation', 'retro', 'document-release',
+    'dojo-review', 'dojo-world', 'dojo-client', 'dojo-model', 'dojo-system', 'dojo-test',
   ];
 
   for (const skill of SKILLS_REQUIRING_PROACTIVE) {

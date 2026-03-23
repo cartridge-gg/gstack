@@ -1,0 +1,6 @@
+interface:
+  display_name: "gstack-dojo-world"
+  short_description: "Dojo world design for onchain games. Write a PRD and TDD plan for a `client/` and `contract/` monorepo, covering..."
+  default_prompt: "Use gstack-dojo-world for this task."
+policy:
+  allow_implicit_invocation: true

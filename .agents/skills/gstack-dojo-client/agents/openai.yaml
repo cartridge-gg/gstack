@@ -1,0 +1,6 @@
+interface:
+  display_name: "gstack-dojo-client"
+  short_description: "Dojo client buildout for Starknet games. Once contract systems exist, run Sozo build and codegen, choose the client..."
+  default_prompt: "Use gstack-dojo-client for this task."
+policy:
+  allow_implicit_invocation: true

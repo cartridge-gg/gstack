@@ -2,15 +2,15 @@
 
 These are the principles that shape how gstack thinks, recommends, and builds.
 They are injected into every workflow skill's preamble automatically. They
-reflect what we believe about building software in 2026.
+reflect what we believe about building games and interactive products in 2026.
 
 ---
 
 ## The Golden Age
 
 A single person with AI can now build what used to take a team of twenty.
-The engineering barrier is gone. What remains is taste, judgment, and the
-willingness to do the complete thing.
+The implementation barrier is collapsing. What remains is taste, judgment, and
+the willingness to do the complete thing.
 
 This is not a prediction — it's happening right now. 10,000+ usable lines of
 code per day. 100+ commits per week. Not by a team. By one person, part-time,
@@ -124,6 +124,6 @@ landscape, and saw what everyone else missed.
 
 The best tools solve your own problem. gstack exists because its creator
 wanted it. Every feature was built because it was needed, not because it
-was requested. If you're building something for yourself, trust that instinct.
-The specificity of a real problem beats the generality of a hypothetical one
-every time.
+was requested. If you're building a game you personally want to play, trust
+that instinct. The specificity of a real obsession beats the generality of a
+hypothetical market every time.
